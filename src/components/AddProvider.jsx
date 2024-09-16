@@ -7,7 +7,7 @@ import { ArrowRightOutlined } from "@ant-design/icons";
 import { ProviderService } from "../services/ProviderService";
 
 export default function AddProvider() {
-  const providerService = ProviderService()
+  const providerService = ProviderService();
   const [activeStep, setActiveStep] = useState(1);
   const [profileData, setProfileData] = useState({
     name: "",
@@ -38,6 +38,7 @@ export default function AddProvider() {
 
   const handleSave = async () => {
     // Final step
+    const com = window.confirm("you sure?");
 
     // Collect all data and send to backend
     const allData = { profileData, reviewData, documentData };
@@ -56,13 +57,12 @@ export default function AddProvider() {
     formData.append("reviewImage", allData.reviewData.reviewImage);
     formData.append("documentFile", allData.documentData.documentFile);
     console.log(allData.documentData.documentFile);
-    
-    
-    try {
-      const response = await providerService.saveProvider(formData)
 
-      if (response.status) {
-        alert(response.message);
+    try {
+      const response = await providerService.saveProvider(formData);
+
+      if (response === 'Saved') {
+        alert(response);
         console.log("success");
 
         navigate("/provider");
@@ -73,12 +73,14 @@ export default function AddProvider() {
       }
     } catch (error) {
       console.log(error);
-      
+
       setErrorMessage("Something went wrong");
     }
   };
 
   const handleStepClick = () => {
+    console.log("next click");
+
     setActiveStep((prevStep) => {
       let newStep = prevStep + 1;
 
@@ -160,7 +162,8 @@ export default function AddProvider() {
         </div>
 
         <div className={classes.next_field}>
-          <button onClick={activeStep == 4 ? handleSave : handleStepClick}>
+          {activeStep}
+          <button onClick={activeStep == 3 ? handleSave : handleStepClick}>
             {activeStep < 3 ? "Next" : "Add New Provider"}{" "}
             <ArrowRightOutlined />
           </button>
