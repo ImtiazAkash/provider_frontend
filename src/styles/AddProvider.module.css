@@ -1,0 +1,109 @@
+.container {
+
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 1rem 0;
+}
+
+.add-providers {
+  text-align: left;
+  padding: 20px;
+  max-width: 300px;
+  font-family: Arial, sans-serif;
+  flex-grow: 0;
+
+}
+
+.add-providers h2 {
+  font-size: 20px;
+}
+
+.add-providers p {
+  font-size: 14px;
+}
+
+.steps-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.step.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.step.active .step_circle {
+  background-color: black;
+  color: white;
+}
+
+.step_circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  color: black;
+}
+
+.step_label {
+  font-size: 16px;
+}
+
+.content {
+  flex-grow: 1;
+  width: 80%;
+}
+
+.next_field button {
+  padding: 11px 22px 11px 22px;
+  border-radius: 12px;
+
+}
+.next_field {
+  text-align: right;
+  margin-top: 1rem;
+  margin-right: 2rem;
+
+}
+
+.container_content {
+  display: flex;
+  flex-direction: row;
+
+}
+
+.input_field {
+  display: flex;
+  flex-direction: column;
+}
+
+.input_field label {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0.3rem 0;
+}
+
+@media only screen and (max-width: 768px) {
+  .container_content {
+    flex-direction: column;
+  }
+
+  .steps_container {
+    flex-direction: row;
+  }
+
+  .next_field {
+    text-align: center;
+  }
+}

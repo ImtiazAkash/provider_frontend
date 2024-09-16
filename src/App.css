@@ -1,0 +1,129 @@
+body {
+  background-color: #EDEDED;
+}
+
+.App {
+  text-align: center;
+
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+
+
+}
+
+button {
+  background-color: #000000;
+  color: #ffff;
+}
+
+.layout {
+  display: flex;
+}
+
+.sidebar {
+  width: 200px;
+  background: #ffffff;
+}
+
+.sidebar .logo {
+  width: 100%;
+}
+
+.sidebar .logo img {
+  width: 100%;
+  object-fit: contain;
+}
+
+.sidebar div ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar div ul li {
+  padding: 4px 8px;
+}
+
+.sidebar .sidebar-menu {
+  padding: 8px 16px;
+}
+
+.content {
+  flex-grow: 1;
+  margin: 1rem 1rem;
+
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse; /* Ensures borders are shared between cells */
+}
+
+table thead th {
+  background-color: #eeeeee;
+  font-weight: 700;
+  font-size: 14px;
+  text-align: center; /* Centers the text in the header */
+  padding: 10px;
+}
+
+table tbody td {
+  padding: 10px;
+  text-align: left; /* Centers the text in table cells */
+  border-bottom: 1px solid #dddddd; /* Bottom border for table rows */
+}
+
+table tr td {
+  vertical-align: middle; /* Aligns the content vertically in the middle */
+}
+
+.tableBox {
+  margin: 0 0.3rem;
+}
+
+ select, input, textarea {
+  padding: 11px 22px 11px 22px;
+  border-radius: 10px;
+
+  
+}
+
+
+@media only screen and (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+}

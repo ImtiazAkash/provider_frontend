@@ -1,0 +1,28 @@
+.profile_container {
+    margin: 0 1rem;
+}
+
+
+
+.bottom_inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.input_field {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .input_field label {
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0.3rem 0;
+  }
+
+@media only screen and (max-width: 768px) {
+    .bottom_inputs {
+        grid-template-columns: auto;
+    }
+}

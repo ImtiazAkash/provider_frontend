@@ -1,0 +1,66 @@
+.table_container {
+    background-color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 24px;
+}
+
+.provider_upper_row {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 400;
+    margin: 1rem 0.5rem 1rem 0.5rem;
+}
+
+.provider_upper_row .select_row_count {
+    display: flex;
+    gap: 1rem;
+    margin-right: auto;
+}
+
+
+
+.pagination_controls {
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  .pagination_controls button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .pagination_controls button.active {
+    background-color: #007bff;
+    color: white;
+    border: none;
+  }
+  
+  .pagination_controls button:disabled {
+    cursor: not-allowed;
+    background-color: #ccc;
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+  }
+  .header button {
+    padding: 11px 22px 11px 22px;
+    border-radius: 12px;
+    margin-left: auto;
+  }
+  
+
+  .input_field {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .input_field label {
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0.3rem 0;
+  }
