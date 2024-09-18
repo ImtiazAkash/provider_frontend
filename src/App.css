@@ -84,7 +84,7 @@ button {
 .content {
   flex-grow: 1;
   margin: 1rem 1rem;
-
+  overflow: auto;
 }
 
 table {

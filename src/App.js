@@ -10,6 +10,8 @@ import AddProvider from './components/AddProvider';
 import Profile from './components/Profile';
 import Review from './components/Review';
 import Document from './components/Document';
+import EditProvider from './components/EditProvider';
+import EditProviderProfile from './components/EditProviderProfile';
 function App() {
   return (
     <Router>
@@ -31,6 +33,11 @@ function App() {
                   <Route path='profile' element={<Profile />} />
                   <Route path='review' element={<Review />} />
                   <Route path='document' element={<Document />} />
+                  
+                </Route>
+                <Route path="/edit-provider" element={<EditProvider />}>
+                    <Route index element={<EditProviderProfile/>} />
+                    <Route path="edit-profile" element={<EditProviderProfile/>}/>
                 </Route>
               </Routes>
             </Layout>
