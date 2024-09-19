@@ -23,6 +23,30 @@ export default function EditProviderProfile() {
     imageFile: "",
   });
 
+  const [fetching, setFetching] = useState(false);
+  const [error, setError] = useState(false);
+
+  const download = (url, name) => {
+    if (!url) {
+      throw new Error("Resource URL not provided! You need to provide one");
+    }
+    setFetching(true);
+    fetch(url)
+      .then(response => response.blob())
+      .then(blob => {
+        setFetching(false);
+        const blobURL = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = blobURL;
+        a.style = "display: none";
+
+        if (name && name.length) a.download = name;
+        document.body.appendChild(a);
+        a.click();
+      })
+      .catch(() => setError(true));
+  };
+
   const fetchData = async () => {
     let token = sessionStorage.getItem("jwtToken");
     try {
@@ -39,7 +63,9 @@ export default function EditProviderProfile() {
       console.log(data);
 
       setProfileData(data);
-      setSelectedImage(`http://localhost:8080/file/images/${data.imageFilePath}`);
+      setSelectedImage(
+        `http://localhost:8080/file/images/${data.imageFilePath}`
+      );
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -92,6 +118,8 @@ export default function EditProviderProfile() {
     }
   };
 
+ 
+
   return (
     <>
       <div className={styles.editContainer}>
@@ -107,11 +135,13 @@ export default function EditProviderProfile() {
             }}
           >
             {selectedImage && selectedImage != "" ? (
+             
               <img
                 src={selectedImage}
                 alt="Selected Image"
                 style={{ maxWidth: "100%", maxHeight: "100%" }}
               />
+             
             ) : (
               <PlusOutlined style={{ fontSize: "32px" }} />
             )}
@@ -142,6 +172,13 @@ export default function EditProviderProfile() {
           >
             Reset
           </button>
+          <button
+      disabled={fetching}
+      onClick={()=> download(selectedImage, "image.png")}
+      aria-label="download image"
+    >
+      DOWNLOAD
+    </button>
         </div>
         <div
           style={{

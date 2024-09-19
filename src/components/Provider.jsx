@@ -198,8 +198,8 @@ export default function Provider() {
                         icon={<EditFilled />}
                         onClick={() => {
                           let index = data.findIndex(data =>data.providerId === item.providerId);
-                          navigate("/edit-provider/edit-profile", {
-                            state: { providerId: data[index].providerId },
+                          navigate("/edit-provider", {
+                            state: { providerId: data[index].providerId, providerName: data[index].providerName },
                           });
                         }}
                       />{" "}

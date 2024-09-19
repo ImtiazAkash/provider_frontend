@@ -38,6 +38,10 @@ function App() {
                 <Route path="/edit-provider" element={<EditProvider />}>
                     <Route index element={<EditProviderProfile/>} />
                     <Route path="edit-profile" element={<EditProviderProfile/>}/>
+                    <Route path="edit-language" element={<EditProviderProfile/>}/>
+                    <Route path="edit-awards" element={<EditProviderProfile/>}/>
+                    <Route path="edit-reviews" element={<EditProviderProfile/>}/>
+                    <Route path="edit-documents" element={<EditProviderProfile/>}/>
                 </Route>
               </Routes>
             </Layout>
