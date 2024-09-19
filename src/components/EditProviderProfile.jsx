@@ -20,15 +20,11 @@ export default function EditProviderProfile() {
     phone: "",
     city: "",
     country: "",
-    imageFilePath: "",
+    imageFile: "",
   });
 
-
   const fetchData = async () => {
-    
     let token = sessionStorage.getItem("jwtToken");
-    
-
     try {
       const response = await axios.get(
         `http://localhost:8080/getProviderById?providerId=${providerId}`,
@@ -38,29 +34,58 @@ export default function EditProviderProfile() {
           },
         }
       );
-      
+
       const data = response.data;
-      setProfileData(data); 
-      
+      console.log(data);
+
+      setProfileData(data);
+      setSelectedImage(`http://localhost:8080/file/images/${data.imageFilePath}`);
     } catch (error) {
       console.error("Error fetching data:", error);
-    } 
+    }
+  };
+
+  const updateData = async () => {
+    const formData = new FormData();
+    formData.append("providerName", profileData.providerName);
+    formData.append("bio", profileData.bio);
+    formData.append("email", profileData.email);
+    formData.append("phone", profileData.phone);
+    formData.append("city", profileData.city);
+    formData.append("country", profileData.country);
+    formData.append("imageFile", profileData.imageFile);
+
+    let token = sessionStorage.getItem("jwtToken");
+    try {
+      const response = await axios.put(
+        `http://localhost:8080/${providerId}/update-profile`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      alert(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   };
 
   useEffect(() => {
     fetchData();
     console.log(profileData);
-    
   }, []);
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
 
     if (file) {
+      setProfileData({ ...profileData, imageFile: file });
       const reader = new FileReader();
       reader.onload = (e) => {
         setSelectedImage(e.target.result);
-        setProfileData({ ...profileData, imageFilePath: e.target.result });
       };
 
       reader.readAsDataURL(file);
@@ -81,7 +106,7 @@ export default function EditProviderProfile() {
               alignItems: "center",
             }}
           >
-            {selectedImage ? (
+            {selectedImage && selectedImage != "" ? (
               <img
                 src={selectedImage}
                 alt="Selected Image"
@@ -112,7 +137,7 @@ export default function EditProviderProfile() {
             onClick={() => {
               setSelectedImage(null);
               document.getElementById("imageFile").value = "";
-              setProfileData({ ...profileData, imageFilePath: "" });
+              setProfileData({ ...profileData, imageFile: "" });
             }}
           >
             Reset
@@ -123,6 +148,7 @@ export default function EditProviderProfile() {
             background: "#ffffff",
             borderRadius: "24px",
             padding: "1rem 1rem",
+            flexGrow: "1",
           }}
           className={classes.profile_container}
         >
@@ -134,7 +160,10 @@ export default function EditProviderProfile() {
                 placeholder="Providers Name"
                 value={profileData.providerName}
                 onChange={(e) =>
-                  setProfileData({ ...profileData, providerName: e.target.value })
+                  setProfileData({
+                    ...profileData,
+                    providerName: e.target.value,
+                  })
                 }
               />
             </div>
@@ -201,6 +230,9 @@ export default function EditProviderProfile() {
             </div>
           </div>
         </div>
+      </div>
+      <div className={styles.bottomButtons}>
+        <button onClick={updateData}>Save Changes</button>
       </div>
     </>
   );
