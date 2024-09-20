@@ -12,6 +12,8 @@ import Review from './components/Review';
 import Document from './components/Document';
 import EditProvider from './components/EditProvider';
 import EditProviderProfile from './components/EditProviderProfile';
+import Language from './components/Language';
+import Awards from './components/Award';
 function App() {
   return (
     <Router>
@@ -38,8 +40,8 @@ function App() {
                 <Route path="/edit-provider" element={<EditProvider />}>
                     <Route index element={<EditProviderProfile/>} />
                     <Route path="edit-profile" element={<EditProviderProfile/>}/>
-                    <Route path="edit-language" element={<EditProviderProfile/>}/>
-                    <Route path="edit-awards" element={<EditProviderProfile/>}/>
+                    <Route path="edit-language" element={<Language/>}/>
+                    <Route path="edit-awards" element={<Awards/>}/>
                     <Route path="edit-reviews" element={<EditProviderProfile/>}/>
                     <Route path="edit-documents" element={<EditProviderProfile/>}/>
                 </Route>

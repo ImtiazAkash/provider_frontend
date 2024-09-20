@@ -1,26 +1,77 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import classes from "../styles/EditProvider.module.css";
 
 export default function EditProvider() {
+  const [tab, setTab] = useState("Profile");
   const location = useLocation();
-  const { providerName } = location.state;
+  const { provider } = location.state;
 
   const navigate = useNavigate();
 
-
   return (
     <>
-      <div style={{ borderRadius: "24px", padding: "1rem 1rem" }}>
-        <h1>Edit {providerName}</h1>
-        <div style={{display: "flex", gap: "1rem", marginBottom: "1rem"}}>
-          <button style={{padding: "11px 22px", borderRadius: "10px"}} onClick={()=> navigate("/edit-provider/edit-profile")}>Profile</button>
-          <button style={{padding: "11px 22px", borderRadius: "10px"}} onClick={()=> navigate("/edit-provider/edit-language")}>Language</button>
-          <button style={{padding: "11px 22px", borderRadius: "10px"}} onClick={()=> navigate("/edit-provider/edit-awards")}>Awards & Recognition</button>
-          <button style={{padding: "11px 22px", borderRadius: "10px"}} onClick={()=> navigate("/edit-provider/edit-reviews")}>Reviews</button>
-          <button style={{padding: "11px 22px", borderRadius: "10px"}} onClick={()=> navigate("/edit-provider/edit-documents")}>Documents</button>
+      <div className={classes.editContainer}>
+        <h1>Edit {provider.providerName}</h1>
+        <div className={classes.navigationButtons}>
+          <button
+            className={tab === "Profile" ? classes.active : classes.inactive}
+            onClick={() => {
+              navigate("/edit-provider/edit-profile", {state: {
+                provider: provider
+              }});
+              setTab("Profile");
+            }}
+          >
+            Profile
+          </button>
+          <button
+            className={tab === "Language" ? classes.active : classes.inactive}
+            onClick={() => {
+              navigate("/edit-provider/edit-language" , {state: {
+                provider: provider
+              }});
+              setTab("Language");
+            }}
+          >
+            Language
+          </button>
+          <button
+            className={tab === "Awards" ? classes.active : classes.inactive}
+            onClick={() => {
+              navigate("/edit-provider/edit-awards", {state: {
+                provider: provider
+              }});
+              setTab("Awards");
+            }}
+          >
+            Awards & Recognition
+          </button>
+          <button
+            className={tab === "Reviews" ? classes.active : classes.inactive}
+            onClick={() => {
+              navigate("/edit-provider/edit-reviews", {state: {
+                provider: provider
+              }});
+              setTab("Reviews");
+            }}
+          >
+            Reviews
+          </button>
+          <button
+            className={tab === "Documents" ? classes.active : classes.inactive}
+            onClick={() => {
+              navigate("/edit-provider/edit-documents", {state: {
+                provider: provider
+              }});
+              setTab("Documents");
+            }}
+          >
+            Documents
+          </button>
         </div>
-        
+
         <Outlet />
       </div>
     </>

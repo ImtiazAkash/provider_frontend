@@ -57,6 +57,7 @@ button {
 .sidebar {
   width: 200px;
   background: #ffffff;
+  height: 100vh;
 }
 
 .sidebar .logo {
@@ -126,4 +127,51 @@ table tr td {
   .sidebar {
     display: none;
   }
+}
+
+
+.modal {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: -5rem;
+  width: 100%;
+  height: auto;
+  overflow: auto;
+  /* margin: 0rem 2rem; */
+  /* backdrop-filter: blur(4px); */
+  transition: all 0.5s ease-in-out;
+}
+
+/* Modal content */
+.modal-content {
+  width: 95%;
+  margin: 2% auto;
+  padding: 5px !important;
+  padding-bottom: 0.5rem !important;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 8px;
+}
+
+
+
+/* Show modal */
+.show {
+  display: block;
+}
+.hide {
+  display: none;
+}
+
+.input_field {
+  display: flex;
+  flex-direction: column;
+}
+
+.input_field label {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0.3rem 0;
 }

@@ -16,20 +16,20 @@ import { Button, Input } from "antd";
 export default function Provider() {
   const navigate = useNavigate();
 
-  const [data, setData] = useState([{}]); // State for fetched data
-  const [filteredData, setFilteredData] = useState([{}]); // State for filtered data
-  const [currentPage, setCurrentPage] = useState(1); // Track current page
-  const [itemsPerPage, setItemsPerPage] = useState(10); // Track items per page
-  const [totalPages, setTotalPages] = useState(0); // Track total pages
-  const [loading, setLoading] = useState(false); // To show loading state
-  const [sortBy, setSortBy] = useState("providerName"); // Default sorting by 'name'
-  const [sortDir, setSortDir] = useState("asc"); // Default sorting direction 'asc'
-  const [searchTerm, setSearchTerm] = useState(""); // Search term state
+  const [data, setData] = useState([{}]); 
+  const [filteredData, setFilteredData] = useState([{}]); 
+  const [currentPage, setCurrentPage] = useState(1); 
+  const [itemsPerPage, setItemsPerPage] = useState(10); 
+  const [totalPages, setTotalPages] = useState(0); 
+  const [loading, setLoading] = useState(false); 
+  const [sortBy, setSortBy] = useState("providerName"); 
+  const [sortDir, setSortDir] = useState("asc"); 
+  const [searchTerm, setSearchTerm] = useState(""); 
 
-  // Fetch data from the backend based on current page, items per page, sortBy, and sortDir
+ 
   const fetchData = async () => {
     let token = sessionStorage.getItem("jwtToken");
-    setLoading(true); // Set loading state to true
+    setLoading(true); 
 
     try {
       const response = await axios.get(
@@ -41,25 +41,25 @@ export default function Provider() {
         }
       );
       const data = response.data;
-      setData(data.providers); // Set the fetched data to the state
-      setFilteredData(data.providers); // Initialize filtered data with the full data
-      setTotalPages(data.totalPages); // Update the total number of pages
+      setData(data.providers); 
+      setFilteredData(data.providers); 
+      setTotalPages(data.totalPages); 
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
-      setLoading(false); // Set loading state to false
+      setLoading(false); 
     }
   };
 
-  // Fetch data when currentPage, itemsPerPage, sortBy, or sortDir changes
+ 
   useEffect(() => {
     fetchData();
   }, [currentPage, itemsPerPage, sortBy, sortDir]);
 
-  // Filter the data based on the search term
+
   useEffect(() => {
     if (searchTerm === "") {
-      setFilteredData(data); // Reset to the full data if the search term is empty
+      setFilteredData(data); 
     } else {
       const filtered = data.filter(
         (item) =>
@@ -71,27 +71,26 @@ export default function Provider() {
     }
   }, [searchTerm, data]);
 
-  // Handle "Previous" button click
+
   const handlePrevious = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
     }
   };
 
-  // Handle "Next" button click
   const handleNext = () => {
     if (currentPage < totalPages) {
       setCurrentPage(currentPage + 1);
     }
   };
 
-  // Handle items per page change
+
   const handleItemsPerPageChange = (e) => {
     setItemsPerPage(parseInt(e.target.value));
-    setCurrentPage(1); // Reset to the first page when items per page change
+    setCurrentPage(1); 
   };
 
-  // Handle sorting by clicking the table header
+
   const handleSort = (column) => {
     if (sortBy === column) {
       setSortDir(sortDir === "asc" ? "desc" : "asc");
@@ -101,14 +100,14 @@ export default function Provider() {
     }
   };
 
-  // Function to handle page change
+
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
-  // Handle search input change
+
   const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value); // Update the search term
+    setSearchTerm(e.target.value); 
   };
 
   const addNewProvider = () => {
@@ -199,7 +198,7 @@ export default function Provider() {
                         onClick={() => {
                           let index = data.findIndex(data =>data.providerId === item.providerId);
                           navigate("/edit-provider", {
-                            state: { providerId: data[index].providerId, providerName: data[index].providerName },
+                            state: { provider: data[index]},
                           });
                         }}
                       />{" "}

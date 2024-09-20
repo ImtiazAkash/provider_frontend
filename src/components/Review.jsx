@@ -17,7 +17,7 @@ function Review() {
     <div className={classes.container}>
       <h1>Review</h1>
       <form>
-        {/* File Upload */}
+        
         <div className={classes.form_group}>
           <label htmlFor="file">Upload File:</label>
           <input

@@ -10,7 +10,7 @@ import { useLocation } from "react-router-dom";
 
 export default function EditProviderProfile() {
   const location = useLocation();
-  const { providerId } = location.state;
+  const { provider } = location.state;
   const [selectedImage, setSelectedImage] = useState(null);
   const [profileData, setProfileData] = useState({
     providerId: "",
@@ -32,8 +32,8 @@ export default function EditProviderProfile() {
     }
     setFetching(true);
     fetch(url)
-      .then(response => response.blob())
-      .then(blob => {
+      .then((response) => response.blob())
+      .then((blob) => {
         setFetching(false);
         const blobURL = URL.createObjectURL(blob);
         const a = document.createElement("a");
@@ -51,7 +51,7 @@ export default function EditProviderProfile() {
     let token = sessionStorage.getItem("jwtToken");
     try {
       const response = await axios.get(
-        `http://localhost:8080/getProviderById?providerId=${providerId}`,
+        `http://localhost:8080/getProviderById?providerId=${provider.providerId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -84,7 +84,7 @@ export default function EditProviderProfile() {
     let token = sessionStorage.getItem("jwtToken");
     try {
       const response = await axios.put(
-        `http://localhost:8080/${providerId}/update-profile`,
+        `http://localhost:8080/${provider.providerId}/update-profile`,
         formData,
         {
           headers: {
@@ -118,8 +118,6 @@ export default function EditProviderProfile() {
     }
   };
 
- 
-
   return (
     <>
       <div className={styles.editContainer}>
@@ -135,13 +133,11 @@ export default function EditProviderProfile() {
             }}
           >
             {selectedImage && selectedImage != "" ? (
-             
               <img
                 src={selectedImage}
                 alt="Selected Image"
                 style={{ maxWidth: "100%", maxHeight: "100%" }}
               />
-             
             ) : (
               <PlusOutlined style={{ fontSize: "32px" }} />
             )}
@@ -173,12 +169,12 @@ export default function EditProviderProfile() {
             Reset
           </button>
           <button
-      disabled={fetching}
-      onClick={()=> download(selectedImage, "image.png")}
-      aria-label="download image"
-    >
-      DOWNLOAD
-    </button>
+            disabled={fetching}
+            onClick={() => download(selectedImage, "image.png")}
+            aria-label="download image"
+          >
+            DOWNLOAD
+          </button>
         </div>
         <div
           style={{
@@ -269,6 +265,7 @@ export default function EditProviderProfile() {
         </div>
       </div>
       <div className={styles.bottomButtons}>
+        <button style={{backgroundColor: "#ffffff", color: "#000000"}}>Cancel</button>
         <button onClick={updateData}>Save Changes</button>
       </div>
     </>

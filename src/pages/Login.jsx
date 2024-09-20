@@ -14,7 +14,7 @@ function Login() {
   useEffect(() => {
     const isAuthenticated = sessionStorage.getItem('userName');
     if (isAuthenticated) {
-      // Redirect to default path if already authenticated
+      
       navigate('/');
     }
   }, [navigate]);

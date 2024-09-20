@@ -1,0 +1,43 @@
+.awardContainer {
+    background-color: #ffffff;
+    border-radius: 24px;
+    padding: 1rem;
+    position: relative;
+}
+
+.awardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bottomInputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: end;
+    gap: 1rem;
+}
+
+@media only screen and (max-width: 768px) {
+    .bottomInputs {
+        grid-template-columns: auto;
+    }
+}
+
+.awardItem {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.bottomButtons {
+    display: flex;
+    justify-content: flex-end;
+    margin: 1rem;
+    gap: 1rem;
+}
+
+.bottomButtons button {
+    padding: 10px 28px 10px 28px;
+    border-radius: 14px;
+}
