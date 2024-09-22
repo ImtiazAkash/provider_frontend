@@ -14,8 +14,7 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 
 export default function Awards() {
-
-    const location = useLocation();
+  const location = useLocation();
   const { provider } = location.state;
   const [modalVisible, setModalVisible] = useState(false);
   const [award, setAward] = useState({
@@ -39,17 +38,17 @@ export default function Awards() {
   const onAwardAdd = () => {
     if (award.awardTitle && award.awardDescription && award.awardYear) {
       if (editIndex !== null) {
-        // Update existing award
+
         const updatedAwards = [...awardList];
         updatedAwards[editIndex] = award;
         setAwardList(updatedAwards);
-        setEditIndex(null); // Reset after update
+        setEditIndex(null); 
       } else {
-        // Add new award
+
         setAwardList([...awardList, award]);
       }
 
-      // Clear the award form and close modal
+      
       setAward({
         awardTitle: "",
         awardDescription: "",
@@ -74,6 +73,7 @@ export default function Awards() {
         {
           headers: {
             Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data"
           },
         }
       );
@@ -86,7 +86,7 @@ export default function Awards() {
     } catch (error) {
       console.error("Error while adding awards:", error);
     }
-  }
+  };
 
   const fetchData = async () => {
     let token = sessionStorage.getItem("jwtToken");
@@ -207,7 +207,9 @@ export default function Awards() {
         </div>
       </div>
       <div className={classes.bottomButtons}>
-        <button style={{backgroundColor: "#ffffff", color: "#000000"}}>Cancel</button>
+        <button style={{ backgroundColor: "#ffffff", color: "#000000" }}>
+          Cancel
+        </button>
         <button onClick={submitAwards}>Save Changes</button>
       </div>
     </>

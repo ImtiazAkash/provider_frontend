@@ -14,6 +14,7 @@ import EditProvider from './components/EditProvider';
 import EditProviderProfile from './components/EditProviderProfile';
 import Language from './components/Language';
 import Awards from './components/Award';
+import EditReview from './components/EditReview';
 function App() {
   return (
     <Router>
@@ -42,7 +43,7 @@ function App() {
                     <Route path="edit-profile" element={<EditProviderProfile/>}/>
                     <Route path="edit-language" element={<Language/>}/>
                     <Route path="edit-awards" element={<Awards/>}/>
-                    <Route path="edit-reviews" element={<EditProviderProfile/>}/>
+                    <Route path="edit-reviews" element={<EditReview/>}/>
                     <Route path="edit-documents" element={<EditProviderProfile/>}/>
                 </Route>
               </Routes>

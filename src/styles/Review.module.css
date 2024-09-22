@@ -37,16 +37,17 @@
   }
   
   .star.filled {
-    color: gold;
+    color: #000000;
   }
   
   .star:hover {
-    color: gold;
+    color: #000000;
   }
   
   .bottom_inputs {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 1rem;
   }
   
   /* Make the form responsive */
