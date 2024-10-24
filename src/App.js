@@ -15,6 +15,7 @@ import EditProviderProfile from './components/EditProviderProfile';
 import Language from './components/Language';
 import Awards from './components/Award';
 import EditReview from './components/EditReview';
+import OAuth2RedirectHandler from './components/OAuth2RedirectedHandler';
 function App() {
   return (
     <Router>
@@ -22,7 +23,7 @@ function App() {
         {/* Public Route: Login (No Layout applied) */}
         
         <Route path="/login" element={<Login />} />
-
+        <Route path="/oauth2/redirect" element={<OAuth2RedirectHandler/>}/>
         {/* Private Routes inside Layout */}
         <Route path="*" element={
           <PrivateRoute>
